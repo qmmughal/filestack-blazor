@@ -7,3 +7,5 @@ This project is helpfull to use filestack in asp.net, asp.net mvc, asp.net core 
 So if you are going to use javascript version of filestack or looking to make calls to File-API of filestack, you would love to use this for authentication process either basic authentication or policy based authentication.
 
 This is also helpfull for blazor applications, you can see how i am using this into blazor to use File Uploader, File Browser to access file and Basic Authentication Process.
+You will see in this solution usage of Blazored.Toast, how we can use and show messages in blazor application.
+Authentication and authorization against filestack APIs relies on Base64URL-encoded JSON “policies” and HMAC-SHA256 “signatures”
