@@ -11,9 +11,10 @@
 @inject IConfiguration Configuration
 
 <h3>@Title</h3>
-<button onclick="openFilePicker('@ApiKey', '@Policy', '@Signature')">ClientSide FilePicket</button>
-<button @onclick="AccessFileUsingBasicAuthentication">ServerSide FilePicket with Basic Authentication</button>
-@* Loading anyfile using Policy, Signatures *@
+<button onclick="openFilePicker('@ApiKey', '@Policy', '@Signature')">ClientSide FilePicker</button>
+<button @onclick="AccessFileUsingBasicAuthentication">ServerSide FilePicker with Basic Authentication</button>
+<br />
+<h4>Loading file using Policy, Signatures on the fly</h4>
 <iframe style="width:100%;height:600px;"
         src="https://cdn.filestackcontent.com/6G4o0V7iTrurGJAwpWXi?policy=@Policy&signature=@Signature">
 </iframe>
@@ -35,7 +36,7 @@
         ApiKey = Configuration["AppSettings:ApiKey"];
         AppSecret = Configuration["AppSettings:AppSecret"];
 
-        var policyJson = new PolicyOptions { Expiry = 1611946800, Call = new List<string> { CallOptions.Pick, CallOptions.Read, CallOptions.Write, CallOptions.WriteUrl } };
+        var policyJson = new PolicyOptions { Expiry = 1680202800, Call = new List<string> { CallOptions.Pick, CallOptions.Read, CallOptions.Write, CallOptions.WriteUrl } };
         var policyJsonString = JsonConvert.SerializeObject(policyJson);
 
         Policy = GetBase64Policy(policyJsonString);
@@ -64,7 +65,7 @@
 
     public void AccessFileUsingBasicAuthentication()
     {
-        var client = new RestClient("https://www.filestackapi.com/api/store/S3?key=ACWTyZlqbT0uEdVfDE87sz");
+        var client = new RestClient("https://www.filestackapi.com/api/store/S3?key=" + ApiKey);
         client.Authenticator = new HttpBasicAuthenticator("app", AppSecret);
         client.Timeout = -1;
 
